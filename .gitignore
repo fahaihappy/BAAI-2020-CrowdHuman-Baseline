@@ -119,3 +119,10 @@ work_dirs/
 *.pth
 *.py~
 *.sh~
+
+
+# cw dataset
+data/crowd_human/
+
+# checkpoints
+work_dirs/

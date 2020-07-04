@@ -61,7 +61,7 @@ def parse_args():
 def main():
     args = parse_args()
     assert args.kind in ('head', 'visible', 'full')
-    convert_annotations(osp.join(args.path, 'annotation_train.odgt'), args.kind)
+    #convert_annotations(osp.join(args.path, 'annotation_train.odgt'), args.kind)
     convert_annotations(osp.join(args.path, 'annotation_val.odgt'), args.kind)
 
 

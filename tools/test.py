@@ -1,5 +1,6 @@
 import argparse
 import os
+import pickle
 
 import mmcv
 import torch
@@ -120,6 +121,19 @@ def main():
         model.CLASSES = checkpoint['meta']['CLASSES']
     else:
         model.CLASSES = dataset.CLASSES
+
+    # test
+    output_dict = []
+    for i in range(len(dataset.data_infos)):
+        temp = dict()
+        temp['ID'] = dataset.data_infos[i]['filename'].split('.')[0]
+        temp['height'] = dataset.data_infos[i]['height']
+        temp['width'] = dataset.data_infos[i]['width']
+        temp['dtboxes'] = []
+        output_dict.append(temp)
+    with open('file_info.pkl', 'wb') as f:
+        pickle.dump(output_dict, f)
+    print('file info generated.')
 
     if not distributed:
         model = MMDataParallel(model, device_ids=[0])
